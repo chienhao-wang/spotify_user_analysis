@@ -5,11 +5,12 @@
 ## Table of Contents
 
 - [Project Overview](#project-overview)
-- [Data Sources](#data-description)
-
+- [Data Description](#data-description)
+- [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)
+- [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
 ---
 
-## Project Overview  
+## Project Overview
 
 This project explores Spotify user behaviour through **data analysis** and **machine learning**, aiming to help marketing teams design evidence-based strategies for user conversion and retention.  
 
@@ -22,7 +23,7 @@ The insights inform targeted marketing campaigns and retention initiatives that 
 
 ---
 
-## Data Description  
+## Data Description
 
 **Source:** [Kaggle - Spotify User Behaviour Dataset](https://www.kaggle.com/datasets/meeraajayakumar/spotify-user-behavior-dataset/data)  
 **Dataset Size:** 520 user records  
@@ -32,7 +33,42 @@ The insights inform targeted marketing campaigns and retention initiatives that 
 - **Behavioural metrics:** Usage duration, listening devices, playlist creation, social sharing  
 - **Subscription data:** Plan type (Free / Premium), and premium willingness  
 
-Data cleaning and preprocessing were conducted using `pandas`, ensuring type consistency, missing value handling, and categorical encoding.  
+[View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
+
+---
+
+## Data Cleaning and Preprocessing
+
+Data cleaning and preprocessing were conducted using `pandas`, ensuring type consistency, missing value handling, and categorical encoding.
+
+**Missing values per column:**  
+| Columns                        | Count |
+| ------------------------------ | ----- |
+| Age                            | 0     |
+| Gender                         | 0     |
+| spotify_usage_period           | 0     |
+| spotify_listening_device       | 0     |
+| spotify_subscription_plan      | 0     |
+| premium_sub_willingness        | 0     |
+| preffered_premium_plan         | 208   |
+| preferred_listening_content    | 0     |
+| fav_music_genre                | 0     |
+| music_time_slot                | 0     |
+| music_Influencial_mood         | 0     |
+| music_lis_frequency            | 0     |
+| music_expl_method              | 0     |
+| music_recc_rating              | 0     |
+| pod_lis_frequency              | 0     |
+| fav_pod_genre                  | 148   |
+| preffered_pod_format           | 140   |
+| pod_host_preference            | 141   |
+| preffered_pod_duration         | 129   |
+| pod_variety_satisfaction       | 0     |  
+
+Since these columns might be optional, I replaced the "No Response" entries with missing values.
+
+**Split Multi-Response Columns by Comma:**  
+Since several survey questions allowed multiple selections, the columns `spotify_listening_device`, `music_Influencial_mood`, `music_lis_frequency`, and `music_expl_method` contain multiple options separated by commas. Therefore, I used `.str.split(',')` to separate all responses and store them in individual dataframes. Additionally, to prepare for subsequent statistical modelling, I created a new dataframe to generate dummy variables for each option.
 
 ---
 
