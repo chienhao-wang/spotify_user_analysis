@@ -35,6 +35,8 @@ The insights inform targeted marketing campaigns and retention initiatives that 
 
 [View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
 
+**Target variables:** `premium_sub_willingness` (Yes/No)
+
 ---
 
 ## Data Cleaning and Preprocessing
@@ -76,30 +78,29 @@ Since several survey questions allowed multiple selections, the columns `spotify
 
 Visualisations were generated using **matplotlib**, **seaborn**, and **squarify** to understand user behaviour patterns.  
 
-### Key Insights  
+### User Overview  
+- **Age:** Majority aged **20–35**, indicating strong millennial adoption.  
+- **Gender:** Female users form the largest group.  
 
-- **Demographics:**  
-  - Users aged **20–35** form the dominant segment (~55%).  
-  - Female users are slightly overrepresented, particularly among long-term Spotify users.  
+### Listening Behaviour  
+- **Device:** Over 75% stream mainly via **smartphones**.  
+- **Usage Tenure:** Most users have used Spotify for **over 2 years**, reflecting strong brand retention.  
+- **Content Type:** Nearly **80%** primarily listen to **music**, while a smaller but growing segment engages with podcasts.  
 
-- **Device Usage:**  
-  - **Smartphones** are the most common platform, followed by **laptops**.  
-  - Users accessing Spotify on **multiple devices** display stronger engagement and retention tendencies.  
+### Music Preferences  
+- **Top Genres:** *Melody*, *Pop*, and *Rap* dominate listening choices.  
+- **Listening Time:** Night-time and workout periods are the most popular.  
+- **Recommendation Ratings:** Around 70% rate Spotify’s recommendations as *3–4 / 5* — moderate satisfaction.  
 
-- **Statistical Associations:**  
-  - *Cramér’s V* and *Chi-square tests* show a strong relationship between  
-    - Listening device ↔ Subscription plan  
-    - Usage period ↔ Premium willingness  
+### Podcast Insights  
+- **Frequency:** Most listen to podcasts *daily*.  
+- **Genre & Format:** *Comedy* and *Storytelling* podcasts are preferred, often **short-form** content.  
+- **Satisfaction:** 85% express *moderate satisfaction* with podcast variety.  
 
-- **Engagement Behaviour:**  
-  - Active playlist creators and social sharers exhibit higher premium conversion likelihood.  
-  - Long-term users stream more minutes daily and have higher loyalty.  
+### Premium Willingness  
+- **Free users:** 73% are *unwilling to upgrade* — long-term exposure alone doesn’t drive conversion.  
+- **Premium users:** 75% plan to continue, though early-stage users (<1 year) show higher churn potential.  
 
-*Visualisations included:*  
-- Distribution plots of age and gender  
-- Treemap of usage combinations  
-- Correlation heatmaps between engagement features  
-- Pair plots of streaming duration vs subscription interest  
 
 ---
 
