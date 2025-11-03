@@ -8,7 +8,7 @@
 - [Data Description](#data-description)
 - [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
-- [Free User Segmentation (K-Means Clustering)](#free-user-segmentation-k-means-clustering)
+- [Free User Segmentation](#free-user-segmentation)
 ---
 
 ## Project Overview
@@ -128,26 +128,82 @@ Visualisations were generated using **matplotlib**, **seaborn**, and **squarify*
 
 [📊 View all charts in EDA](https://github.com/chienhao-wang/spotify_user_analysis/tree/main/EDA_Charts)
 
-## Free User Segmentation (K-Means Clustering)  
+## Free User Segmentation 
 
-The **K-Means algorithm** was used to classify free users based on behavioural metrics.  
-Data were standardised using `StandardScaler`.  
+This section focuses on understanding the behavioural and attitudinal patterns of **free-tier Spotify users** to identify potential converters for Premium plans.  
+The analysis combined **exploratory visualisations**, **statistical testing**, and **K-Means clustering** to uncover key drivers of upgrade willingness.  
 
-### Model Setup  
-- **Optimal clusters:** 3 (based on *Elbow Method* and *Silhouette Score*)  
-- **Libraries:** `scikit-learn`, `matplotlib`, `pandas`  
+### Behavioural Analysis  
 
-### Cluster Profiles  
+<p align="center">
+  <img src="Free_Users_Charts/1_free_device_convert_treemap.png" width="48%">
+  <img src="Free_Users_Charts/2_free_convert_by_preferred_plan_bar.png" width="48%">
+  <br>
+  <em>Figure 1–2: Device Usage and Preferred Pricing Plan</em>
+</p>
 
-| Cluster | Description | Behavioural Traits | Marketing Actions |
-|----------|--------------|--------------------|-------------------|
-| **0. Casual Listeners** | Low engagement, short sessions, single-device users | Low brand loyalty | Introduce limited-time premium trials |
-| **1. Explorers** | Moderate use, frequent skips, multi-genre listeners | Curious, inconsistent | Offer personalised music recommendations |
-| **2. Engaged Streamers** | High listening duration, multi-device use | Loyal, high upgrade potential | Target for premium conversion |
+- **Device Usage:** Conversion rates are similar across devices, but **smartphone** and **wearable users** show slightly higher upgrade likelihood—suggesting that on-the-go listeners value ad-free and offline features.  
+- **Pricing Preferences:** Users lean toward **multi-user plans** (Duo/Family), implying that **cost-per-user** and shared value drive premium adoption decisions.  
 
-*Cluster visualisations:*  
-- Scatter plots of streaming duration vs session frequency  
-- Heatmaps highlighting behavioural feature differences  
+<p align="center">
+  <img src="Free_Users_Charts/3_free_convert_by_content_line.png" width="48%">
+  <img src="Free_Users_Charts/4_free_convert_by_usage_and_content_bar.png" width="48%">
+  <br>
+  <em>Figure 3–4: Content Type and Tenure Analysis</em>
+</p>
+
+- **Content Type:** Podcast listeners demonstrate a **stronger upgrade intention** than music listeners, indicating opportunity for **podcast-focused promotions**.  
+- **Tenure Effect:** Among podcast users, **1–2 years of active usage** correlates with higher conversion probability, suggesting that long-term engagement supports premium readiness.  
+
+### Music & Podcast Insights  
+
+<p align="center">
+  <img src="Free_Users_Charts/5_free_convert_by_genre_treemap.png" width="48%">
+  <img src="Free_Users_Charts/7_free_convert_by_lis_freq_treemap.png" width="48%">
+  <br>
+  <em>Figure 5–6: Music Genre and Listening Context</em>
+</p>
+
+- **Music Listeners:** Potential upgraders prefer **Melody**, **Pop**, **Rap**, and **Classical** genres, typically streaming during **afternoon hours**—pointing to genre-time relationships that can inform targeted recommendations.  
+- **Listening Context:** Most free users listen **while travelling, relaxing, or studying**, showing Spotify’s role as a **lifestyle companion** for leisure and productivity.  
+
+<p align="center">
+  <img src="Free_Users_Charts/8_free_convert_by_pod_genre_treemap.png" width="600">
+  <br>
+  <em>Figure 7: Podcast Genre Conversion</em>
+</p>
+
+- **Podcast Genres:** Health & Fitness, Sports, and Lifestyle topics exhibit the **highest upgrade rates**, highlighting active and wellness-oriented listeners as strong conversion segments.  
+
+### Statistical Association & Segmentation  
+
+<p align="center">
+  <img src="Free_Users_Charts/10_free_cluster_elbow.png" width="48%">
+  <br>
+  <em>Figure 8: Cramér’s V Correlations</em>
+</p>
+
+- **Cramér’s V analysis** identified the most influential factors linked to premium willingness:  
+  `preferred_premium_plan`, `device_type`, and `fav_music_genre` ranked highest (C > 0.30).  
+- Variables with **p < 0.01** from the chi-square test were used in the **K-Means model**, which determined **three behavioural clusters (k = 3)**.
+
+**Cluster Profile:**  
+| Cluster | Size | Conversion Rate | Key Traits | Suggested Marketing Actions |
+|----------|------|------------------|-------------|------------------------------|
+| **0 – Relaxed Streamers** | 218 users | 18% | Mobile-only, listen at night for relaxation or stress relief | Offer affordable *Student/Introductory Plans* and promote mood-based playlists to increase engagement. |
+| **1 – Multi-Device Enthusiasts** | 82 users | 63% | Listen across devices (PC, smart speaker, phone), high podcast activity, prefer Duo/Family plans | Target with *premium bundle offers*, emphasising ad-free listening and shared plan value. |
+| **2 – Casual Listeners** | 124 users | 20% | Primarily music listeners, lower session frequency, moderate engagement | Retain via *in-app gamification* or personalised reminders to sustain activity. |
+
+**Cluster Insights:**  
+- **Cluster 1 – Multi-Device Enthusiasts:** Smallest segment (~82 users) but **most conversion-ready** (> 60% upgrade intention). Frequent podcast listeners, diverse moods, and preference for Duo/Family plans—ideal for targeted Premium offers.  
+- **Cluster 0 & 2 – Casual Mobile Listeners:** Mostly **mobile-only**, using Spotify at night for relaxation or stress relief. Low upgrade interest (< 20%), representing the **retention and nurturing group**.  
+
+### Key Takeaways  
+
+- **Multi-device and podcast engagement** strongly predict premium conversion potential.  
+- **Shared plans** and **long-term listening tenure** drive higher upgrade interest.  
+- **Cluster 1** represents the prime marketing segment—active, cross-device users with emotional diversity and higher spending power.  
+- Future campaigns could focus on promoting **ad-free multi-device access**, **exclusive podcast content**, and **value-driven family plans** to maximise conversion.
 
 ---
 
