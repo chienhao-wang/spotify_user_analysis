@@ -9,6 +9,8 @@
 - [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
 - [Free User Segmentation](#free-user-segmentation)
+- [Premium User Churn Prediction](#premium-user-churn-prediction)
+- [Business Insights](#business-insights)
 ---
 
 ## Project Overview
@@ -198,6 +200,9 @@ The analysis combined **exploratory visualisations**, **statistical testing**, a
 - **Cluster 1 – Multi-Device Enthusiasts:** Smallest segment (~82 users) but **most conversion-ready** (> 60% upgrade intention). Frequent podcast listeners, diverse moods, and preference for Duo/Family plans—ideal for targeted Premium offers.  
 - **Cluster 0 & 2 – Casual Mobile Listeners:** Mostly **mobile-only**, using Spotify at night for relaxation or stress relief. Low upgrade interest (< 20%), representing the **retention and nurturing group**.  
 
+**Cluster Visualisation**  
+
+
 ### Key Takeaways  
 
 - **Multi-device and podcast engagement** strongly predict premium conversion potential.  
@@ -209,28 +214,92 @@ The analysis combined **exploratory visualisations**, **statistical testing**, a
 
 ## Premium User Churn Prediction  
 
-A **Logistic Regression model** was trained to predict whether a premium user would churn.  
+This section analyses **Premium users’ churn behaviour**, exploring how plan type, usage duration, and content preferences affect retention.  
+Through **visual exploration**, **statistical testing**, and a **logistic regression model**, this stage identifies the key drivers behind premium churn and potential retention levers.  
 
-### Model Pipeline  
-1. Data split using `train_test_split` (80/20)  
-2. Feature scaling via `StandardScaler`  
-3. Model evaluation through *accuracy*, *precision*, *recall*, and *ROC-AUC*  
+---
 
-### Performance Summary  
+### Churn Overview  
 
-| Metric | Score |
-|---------|-------|
-| Accuracy | 0.82 |
-| Precision | 0.79 |
-| Recall | 0.76 |
-| ROC-AUC | 0.84 |
+**Overall Churn Rate:** 25% among Premium users  
+**User Distribution:** 72 retained vs. 24 churned  
 
-The model achieved a strong balance between precision and recall, making it suitable for identifying at-risk users without excessive false positives.  
+<p align="center">
+  <img src="Premium_Users_Charts/1_premium_churn_by_plan_bar.png" width="48%">
+  <img src="Premium_Users_Charts/2_premium_churn_by_usage_bar.png" width="48%">
+  <br>
+  <em>Figure 1–2: Churn Rate by Preferred Premium Plan and Usage Period</em>
+</p>
 
-### Top Churn Indicators  
-1. **Reduced daily listening time** – strongest churn predictor  
-2. **Shorter subscription tenure** – early churn tendency  
-3. **Limited device diversity** – single-device users churn more frequently  
+**Plan Type:**  
+Higher-tier plans such as **Family (£19.99)** and **Duo (£16.99)** show **30–40% churn**, implying potential **price dissatisfaction** or **shared-plan fatigue**.  
+In contrast, **Individual** and **Student** plans demonstrate lower churn, indicating **clearer value perception** among solo users.  
+
+**Usage Tenure:**  
+Churn rate drops steadily with platform experience — from **over 40% (<6 months)** to **below 10% (>2 years)** — suggesting that **longer usage enhances loyalty**.  
+
+### Content & Engagement Insights  
+
+<p align="center">
+  <img src="Premium_Users_Charts/4_premium_churn_by_genre_bar.png" width="48%">
+  <img src="Premium_Users_Charts/5_premium_churn_by_pod_format_bar.png" width="48%">
+  <br>
+  <em>Figure 3–4: Churn Rate by Favourite Music Genre and Podcast Format</em>
+</p>
+
+**Music Preference:**  
+Listeners who prefer **Classical** or **All genres** experience **higher churn**, whereas **Pop** and **Electronic/Dance** fans show **greater retention stability** — indicating stronger engagement among mainstream or upbeat genres.  
+
+**Podcast Format:**  
+**Interview-style** podcasts show the **highest churn rate (~42%)**, while **Educational** formats retain users better — highlighting how **knowledge-based content** sustains engagement among premium subscribers.  
+
+### Statistical Modelling  
+
+A **chi-square test** confirmed significant relationships between churn and variables including  
+`preferred_premium_plan`, `spotify_usage_period`, and `fav_music_genre` *(p < 0.01)*.  
+
+A **Logistic Regression model** was applied using `class_weight='balanced'` to correct class imbalance.  
+
+**Model Performance:**  
+| Metric               | Score |
+|----------------------|-------|
+| Accuracy             | 0.70  |
+| Precision (weighted) | 0.70  |
+| Recall (weighted)    | 0.70  |
+| F1-score (weighted)  | 0.70  |
+
+<p align="center">
+  <img src="Premium_Users_Charts/6_premium_churn_confusion_matrix.png" width="450">
+  <br>
+  <em>Figure 5: Logistic Regression Confusion Matrix</em>
+</p>
+
+<p align="center">
+  <img src="Premium_Users_Charts/7_premium_churn_model_coefficients.png" width="900">
+  <br>
+  <em>Figure 6: Top Factors Driving and Preventing Churn</em>
+</p>
+
+| **Risk Drivers (↑ Churn)**             | **Protective Factors (↓ Churn)** |
+|----------------------------------------|----------------------------------|
+| Family / Duo plans                     | Podcast-preferring users         |
+| Classical music fans                   | Wearable device users            |
+| Very dissatisfied with podcast variety | Age 20–35                        |
+| Workout-session listeners              | High music recommendation rating |
+| Unknown podcast hosts                  | Student / Individual plan users  |
+
+### Key Findings  
+
+- **High-tier plans** face **elevated churn** due to shared-account fatigue and cost sensitivity.  
+- **Retention strengthens with tenure** — long-term users are less likely to churn.  
+- **Podcast satisfaction** is a major retention factor; dissatisfaction significantly predicts churn.  
+- **Younger, wearable-device users** show **low churn**, reflecting tech-adaptive engagement patterns.  
+
+### Marketing Implications  
+
+- **Reposition Family & Duo Plans:** Reinforce shared value with group playlists or family rewards.  
+- **Enhance Early-Stage Retention:** Improve onboarding, deliver personalised recommendations, and introduce loyalty incentives within the first 6 months.  
+- **Optimise Content Strategy:** Promote *educational* podcasts and *electronic/pop* genres to enhance engagement among at-risk subscribers.  
 
 ---
 
@@ -247,32 +316,3 @@ The model achieved a strong balance between precision and recall, making it suit
 ### Continuous Monitoring  
 - Integrate churn probability into Spotify’s **CRM dashboards**.  
 - Retrain models periodically to capture evolving behavioural trends.  
-
----
-
-## Tech Stack  
-
-| Category | Tools / Libraries |
-|-----------|------------------|
-| Data Handling | `pandas`, `numpy` |
-| Visualisation | `matplotlib`, `seaborn`, `squarify` |
-| Statistics | `scipy.stats`, `chi2_contingency`, `Cramér’s V` |
-| Machine Learning | `scikit-learn` (`KMeans`, `LogisticRegression`, `StandardScaler`) |
-| Evaluation | `classification_report`, `confusion_matrix`, `roc_auc_score` |
-| Environment | Jupyter Notebook (`.ipynb`) |
-
----
-
-## Conclusion  
-
-This project demonstrates how **machine learning** can empower data-driven marketing in the music streaming industry.  
-By combining **behavioural segmentation** and **churn prediction**, Spotify can personalise campaigns, reduce churn, and improve retention across its global user base.  
-
----
-
-## Appendix  
-
-**Visual Outputs:**  
-- Elbow curve for cluster selection  
-- Cluster heatmaps and scatter plots  
-- Confusion matrix and ROC curve for churn model  
