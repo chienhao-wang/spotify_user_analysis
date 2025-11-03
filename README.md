@@ -8,6 +8,7 @@
 - [Data Description](#data-description)
 - [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+- [Free User Segmentation (K-Means Clustering)](#free-user-segmentation-k-means-clustering)
 ---
 
 ## Project Overview
@@ -78,31 +79,54 @@ Since several survey questions allowed multiple selections, the columns `spotify
 
 Visualisations were generated using **matplotlib**, **seaborn**, and **squarify** to understand user behaviour patterns.  
 
-### User Overview  
-- **Age:** Majority aged **20–35**, indicating strong millennial adoption.  
-- **Gender:** Female users form the largest group.  
+### User Overview & Listening Behaviour
+- The majority of users are **20–35 years old**, with **female** listeners forming the largest group.  
+- Over **75%** stream mainly via **smartphones**, and most have used Spotify for **2+ years**.
 
-### Listening Behaviour  
-- **Device:** Over 75% stream mainly via **smartphones**.  
-- **Usage Tenure:** Most users have used Spotify for **over 2 years**, reflecting strong brand retention.  
-- **Content Type:** Nearly **80%** primarily listen to **music**, while a smaller but growing segment engages with podcasts.  
+<p align="center">
+  <img src="EDA_Charts/1_eda_age_bar.png" width="48%">
+  <img src="EDA_Charts/4_eda_listen_device_bar.png" width="48%">
+  <br>
+  <em>Figure: Age Group & Listening Devices Distribution</em>
+</p>
 
-### Music Preferences  
-- **Top Genres:** *Melody*, *Pop*, and *Rap* dominate listening choices.  
-- **Listening Time:** Night-time and workout periods are the most popular.  
-- **Recommendation Ratings:** Around 70% rate Spotify’s recommendations as *3–4 / 5* — moderate satisfaction.  
+### Music Preferences   
+- Nearly **80%** primarily listen to **music**, with *Melody*, *Pop*, and *Rap* as top genres.  
+- **Night-time** and **workout** are the most popular listening moments.  
+- Around **70%** are moderately satisfied with Spotify’s **music recommendations**.
 
-### Podcast Insights  
-- **Frequency:** Most listen to podcasts *daily*.  
-- **Genre & Format:** *Comedy* and *Storytelling* podcasts are preferred, often **short-form** content.  
-- **Satisfaction:** 85% express *moderate satisfaction* with podcast variety.  
+<p align="center">
+  <img src="EDA_Charts/8_eda_music_genre_by_timeslot_bar.png" width="900">
+  <br>
+  <em>Figure 2: Listeners by Favourite Music Genre and Timeslot</em>
+</p>
+
+<p align="center">
+  <img src="EDA_Charts/10_eda_music_lis_freq_bar.png" width="48%">
+  <img src="EDA_Charts/11_eda_music_recc_rating_bar.png" width="48%">
+  <br>
+  <em>Figure 3: Listeners by Music Listening Frequency and Distribution of Music Recommendation Rating</em>
+</p>
+
+### Podcast Insights    
+- **Podcasts** attract daily listeners, mainly for **short-form comedy or storytelling** content.
+
+<p align="center">
+  <img src="EDA_Charts/14_eda_podcast_format_bar.png" width="900">
+  <br>
+  <em>Figure 4: Listeners by Preferred Podcast Format</em>
+</p>
 
 ### Premium Willingness  
-- **Free users:** 73% are *unwilling to upgrade* — long-term exposure alone doesn’t drive conversion.  
-- **Premium users:** 75% plan to continue, though early-stage users (<1 year) show higher churn potential.  
+- **73%** of free users are unwilling to upgrade, while **75%** of premium users plan to continue — early-stage premium users show the highest churn risk.
 
+<p align="center">
+  <img src="EDA_Charts/17_eda_willingness_by_plan_bar.png" width="900">
+  <br>
+  <em>Figure 5: Premium Subscription Willingness Distribution</em>
+</p>
 
----
+[View all charts in EDA](https://github.com/chienhao-wang/spotify_user_analysis/tree/main/EDA_Charts)
 
 ## Free User Segmentation (K-Means Clustering)  
 
