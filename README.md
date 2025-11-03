@@ -34,7 +34,7 @@ The insights inform targeted marketing campaigns and retention initiatives that 
 - **Behavioural metrics:** Usage duration, listening devices, playlist creation, social sharing  
 - **Subscription data:** Plan type (Free / Premium), and premium willingness  
 
-[View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
+[🗂️ View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
 
 **Target variables:** `premium_sub_willingness` (Yes/No)
 
@@ -126,7 +126,7 @@ Visualisations were generated using **matplotlib**, **seaborn**, and **squarify*
   <em>Figure 5: Premium Subscription Willingness Distribution</em>
 </p>
 
-[View all charts in EDA](https://github.com/chienhao-wang/spotify_user_analysis/tree/main/EDA_Charts)
+[📊 View all charts in EDA](https://github.com/chienhao-wang/spotify_user_analysis/tree/main/EDA_Charts)
 
 ## Free User Segmentation (K-Means Clustering)  
 
