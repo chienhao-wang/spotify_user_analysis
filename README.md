@@ -315,4 +315,4 @@ A **Logistic Regression model** was applied using `class_weight='balanced'` to c
 
 ### Continuous Monitoring  
 - Integrate churn probability into Spotify’s **CRM dashboards**.  
-- Retrain models periodically to capture evolving behavioural trends.  
+- Retrain models periodically to capture evolving behavioural trends.
