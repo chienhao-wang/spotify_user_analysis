@@ -1,6 +1,10 @@
 # Spotify User Segmentation & Churn Analysis  
 *A Data-Driven Approach to Understanding and Retaining Spotify Users*  
 
+![Status](https://img.shields.io/badge/Status-Project_Completed-success)
+![Python](https://img.shields.io/badge/Python-Machine_Learning-3776AB?style=flat&logo=python&logoColor=white)
+![Power BI](https://img.shields.io/badge/Power_BI-Business_Intelligence-F2C811?style=flat&logo=powerbi&logoColor=black)
+
 ---
 ## Table of Contents
 
