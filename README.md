@@ -8,76 +8,103 @@
 ---
 ## Table of Contents
 
-- [Project Overview](#project-overview)
-- [Data Description](#data-description)
-- [Data Cleaning and Preprocessing](#data-cleaning-and-preprocessing)
+- [Business Objective](#business-objective)
+- [Problem Framing](#problem-framing)
+- [Approach](#approach)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
 - [Free User Segmentation](#free-user-segmentation)
 - [Premium User Churn Prediction](#premium-user-churn-prediction)
 - [Conclusion & Business Insights](#conclusion--business-insights)
 ---
 
-## Project Overview
+## Business Objective
 
-This project explores Spotify user behaviour through **data analysis** and **machine learning**, aiming to help marketing teams design evidence-based strategies for user conversion and retention.  
+According to Spotify’s 2023 annual report, [the Premium Services segment generated **€11.57 billion** and accounted for **87% of total revenue**](https://www.investopedia.com/articles/investing/120314/spotify-makes-internet-music-make-money.asp), underscoring the critical importance of converting free users and retaining paying subscribers. Strengthening Premium adoption is therefore a key driver of long-term profitability and customer lifetime value (CLV).
 
-Using **Python**, **pandas**, **matplotlib**, and **scikit-learn**, the analysis focuses on:  
-
-1. **Free User Segmentation** – uncovering behavioural clusters among free-tier users via *K-Means clustering*.  
-2. **Premium User Churn Prediction** – developing a supervised *Logistic Regression model* to predict subscriber churn.  
-
-The insights inform targeted marketing campaigns and retention initiatives that enhance Spotify’s customer lifetime value.  
+This project leverages the [*Spotify User Behaviour Dataset*](https://www.kaggle.com/datasets/meeraajayakumar/spotify-user-behavior-dataset/data) from Kaggle to analyse how user behaviours relate to their likelihood of upgrading to Premium or remaining subscribed as Premium users, enabling the identification of key behavioural drivers behind both conversion and retention. The objective is to support data-driven strategies that improve revenue performance and customer lifetime value (CLV).
 
 ---
 
-## Data Description
+## Problem Framing
+
+Spotify’s revenue growth is heavily dependent on its Premium subscribers. However, based on this dataset, **free users account for 81.5% of the user base with only a ~27% conversion rate, while 18.5% of users are Premium subscribers, of whom approximately one-quarter indicate a likelihood to churn** (see Figure 1 and Table 1). This highlights two parallel business challenges: **low conversion among free users and meaningful churn risk within the Premium segment**.
+
+| Spotify Subscription Plan      | No (%)     | Yes (%)    |
+|--------------------------------|------------|------------|
+| Free (ad-supported)            | 73.11%     | 26.89%     |
+| Premium (paid subscription)    | 25.00%     | 75.00%     |
+
+**Table 1: Current Subcription Plan vs. Percentage of Premium Willingness**  
+
+<p align="left">
+  <img src="EDA_Charts/17_eda_willingness_by_plan_bar.png" width="600">
+  <br>
+  <em>Figure 1: Premium Subscription Willingness Distribution</em>
+</p>
+
+Because the dataset does not contain direct revenue information, this project uses *willingness to subscribe or continue subscribing (`premium_sub_willingness`)* as a proxy for revenue-related behaviour. The analysis focuses on two key user groups:
+
+- **Free Users:** Identify behavioural drivers of Premium subscription willingness and uncover actionable user segments to enable more targeted and cost-effective marketing interventions (e.g., discounts, family plan promotion).
+- **Premium Users:** Find the behavioural indicators of retention willingness and develop churn-prediction models to support personalised recommendations and product strategy enhancements for at-risk users.
+
+To quantify the potential business impact, the analysis is framed around four commercial metrics:
+
+1. **Increase in Customer Lifetime Value (CLV)**
+2. **Estimated Annual Recurring Revenue (ARR) preserved**
+3. **Incremental revenue from Free → Premium conversion**
+4. **Improvement in marketing efficiency (ROI / CAC)**
+
+This framing enables a structured approach to identifying the core behavioural drivers behind conversion and retention.
+
+---
+
+## Approach
+
+### 1. Data Description
 
 **Source:** [Kaggle - Spotify User Behaviour Dataset](https://www.kaggle.com/datasets/meeraajayakumar/spotify-user-behavior-dataset/data)  
-**Dataset Size:** 520 user records  
+**Size:** 520 user records  
 **Features:**  
-
 - **Demographics:** Age group, Gender  
-- **Behavioural metrics:** Usage duration, listening devices, playlist creation, social sharing  
-- **Subscription data:** Plan type (Free / Premium), and premium willingness  
+- **Behavioural metrics:** Usage duration, listening devices, preferred listening content, preferred music/podcast genre  
+- **Subscription data:** Current plan (Free/Premium) and willingness to subscribe or continue subscribing  
 
 [🗂️ View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
 
-**Target variables:** `premium_sub_willingness` (Yes/No)
+The primary target variable for this analysis is `premium_sub_willingness` (Yes/No)
 
----
+### 2. Data Cleaning and Preprocessing
 
-## Data Cleaning and Preprocessing
+All preprocessing steps were performed using `pandas`, including type standardisation, handling missing values, and encoding categorical variables.
 
-Data cleaning and preprocessing were conducted using `pandas`, ensuring type consistency, missing value handling, and categorical encoding.
+- Several survey questions were optional. When missing values occurred in these fields, they were imputed with a **"No Response"** label and treated as a separate response category rather than dropped.
+- Multi-response columns (e.g., `spotify_listening_device`, `music_Influencial_mood`) were split using `.str.split(',')`
+- A dummy-encoded dataframe was generated to support statistical testing and modelling
 
-**Missing values per column:**  
-| Columns                        | Count |
-| ------------------------------ | ----- |
-| Age                            | 0     |
-| Gender                         | 0     |
-| spotify_usage_period           | 0     |
-| spotify_listening_device       | 0     |
-| spotify_subscription_plan      | 0     |
-| premium_sub_willingness        | 0     |
-| preffered_premium_plan         | 208   |
-| preferred_listening_content    | 0     |
-| fav_music_genre                | 0     |
-| music_time_slot                | 0     |
-| music_Influencial_mood         | 0     |
-| music_lis_frequency            | 0     |
-| music_expl_method              | 0     |
-| music_recc_rating              | 0     |
-| pod_lis_frequency              | 0     |
-| fav_pod_genre                  | 148   |
-| preffered_pod_format           | 140   |
-| pod_host_preference            | 141   |
-| preffered_pod_duration         | 129   |
-| pod_variety_satisfaction       | 0     |  
+### 3. Analytical Methodology
 
-Since these columns might be optional, I replaced the "No Response" entries with missing values.
+Two analytical tracks were designed for Free and Premium users:
 
-**Split Multi-Response Columns by Comma:**  
-Since several survey questions allowed multiple selections, the columns `spotify_listening_device`, `music_Influencial_mood`, `music_lis_frequency`, and `music_expl_method` contain multiple options separated by commas. Therefore, I used `.str.split(',')` to separate all responses and store them in individual dataframes. Additionally, to prepare for subsequent statistical modelling, I created a new dataframe to generate dummy variables for each option.
+**Free Users**  
+- Conducted **Chi-square tests** to identify behavioural features significantly associated with Premium subscription willingness
+- Performed **K-means clustering** using the significant variables to uncover meaningful user segments for targeted marketing
+
+**Premium Users**
+
+- Built a **Logistic Regression** model to predict churn likelihood
+- **Feature coefficients** were used to evaluate the impact of each behavioural variable:
+  - **Positive coefficients (> 0)**: indicate risk factors that increase churn likelihood
+  - **Negative coefficients (< 0)**: represent protective factors that enhance retention
+- A **coefficient bar chart** was produced to visualise the relative importance of each factor, allowing marketing and product teams to clearly understand which behaviours contribute most to churn or retention.
+
+
+### 4. Analysis Workflow
+
+1. Conduct EDA to understand Spotify’s conversion and retention challenges
+2. Segment Free users to identify high-potential Premium prospects
+3. Build a churn prediction model for Premium users
+4. Synthesize insights across both user groups
+5. Translate findings into actionable recommendations for Spotify’s marketing and product teams
 
 ---
 
