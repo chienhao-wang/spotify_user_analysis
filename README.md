@@ -13,6 +13,8 @@
 - [Approach](#approach)
 - [Key Findings](#key-findings)
 - [Recommendations](#recommendations)
+- [Business Impact](#business-impact)
+- [Next Step](#next-step)
 
 ---
 
@@ -220,3 +222,122 @@ Recommended actions:
 Building multi-device habits reinforces long-term retention.
 
 ---
+
+## Business Impact
+
+This project quantifies how behavioural segmentation and churn modelling can drive commercial value for Spotify across three key levers: **CLV uplift, incremental conversion revenue, and improved marketing efficiency**.
+
+---
+
+### 1. Customer Lifetime Value (CLV) Uplift
+
+**Calculation logic:**
+
+- ARPU = €4.62 ≈ £4.04  
+- Current Monthly Churn Rate = 0.25  
+- Current Lifetime (in months):
+
+  `Current Lifetime = 1 / Monthly Churn Rate = 1 / 0.25 = 4`
+
+- Model Recall (from actual analysis) = 0.40  
+- Marketing intervention effectiveness (conservative) = 0.15  
+
+- New Churn Rate after intervention:
+
+  `New Churn Rate = Current Churn Rate * (1 - Recall * Intervention Effectiveness)`
+  
+  `= 0.25 * (1 - 0.40 * 0.15) ≈ 0.235`
+
+- New Lifetime:
+
+  `New Lifetime = 1 / New Churn Rate ≈ 1 / 0.235 ≈ 4.26`
+
+**CLV uplift per user:**  
+
+  `CLV Uplift = (New Lifetime - Current Lifetime) * ARPU`
+  
+  `≈ (4.26 - 4) * 4.04 ≈ £1.03 per user`
+
+Under conservative assumptions (40% Recall and 15% intervention effectiveness), the overall churn rate improves from **25% to 23.5%**, resulting in an estimated **£1.03 CLV uplift per user**.
+
+If model performance is improved and Recall reaches **60%**, the CLV uplift increases to approximately **£2.06 per user**.  
+Applied to **10,000 Premium users**, this translates to around **£10,300** in additional long-term value.
+
+---
+
+### 2. Free → Premium Conversion Revenue
+
+**Calculation logic:**
+
+- Target segment: Cluster 1 (high upgrade intention)  
+- Cluster size: 82 users  
+- Baseline conversion rate: 62.2%  
+  - Baseline converters ≈ `82 * 0.622 ≈ 51` users  
+- Assumed conversion rate (after intervention): 67.2%  
+  - New converters ≈ `82 * 0.672 ≈ 55` users  
+- Incremental converters ≈ `55 - 51 = 4` users  
+
+Using these 4 additional Premium users as the base:
+
+**Monthly incremental revenue:**
+
+  `4 * ARPU = 4 * 4.04 ≈ £16.16`
+
+**Annual incremental revenue:**
+
+  `£16.16 * 12 ≈ £193.92`
+
+When extrapolated to a larger base (e.g. 100,000 free users with similar structure and behaviour), the projected annual revenue uplift is approximately **£46,879.25**.
+
+---
+
+### 3. Marketing Cost Efficiency (ROI / CAC)
+
+**Baseline Marketing (all free users)**  
+- Target: all free users  
+- Observed overall conversion rate: **26.9%**  
+- Represents a non-targeted, low-precision acquisition strategy.
+
+**Targeted Marketing (podcast enthusiasts)**  
+- Target: free users who regularly listen to podcasts  
+- Conversion rate in this segment: **54.8%**
+
+This means podcast enthusiasts convert at roughly **2×** the rate of the overall free user base.  
+With the same marketing budget, targeted campaigns can either:
+
+- Achieve more conversions for the same spend, or  
+- Maintain conversion volume with significantly less spend.
+
+For example, under reasonable cost assumptions, Customer Acquisition Cost (CAC) can be reduced from around **£15.46** to approximately **£7.58**, implying:
+
+- ~**50% reduction in CAC**  
+- **>1.1× improvement in marketing ROI**
+
+---
+
+## Next Step
+
+1. **Expand the dataset to improve model reliability**  
+The current dataset contains roughly 500 users, with only 96 Premium users. This creates a significant imbalance in the target variable and limits the statistical power of both the logistic regression model and the clustering analysis. Collecting additional Premium user samples would help balance the dataset and improve predictive accuracy and model stability.
+
+2. **Introduce additional behavioural and experience-related features**  
+The present analysis focuses primarily on listening behaviour, music preferences, and podcast habits. To achieve a more comprehensive understanding of user behaviour, Spotify could incorporate new variables such as:  
+- Feedback on personalised playlists and recommendation relevance  
+- Satisfaction with the app interface (UI/UX metrics)  
+- Social engagement behaviours (sharing, saving, playlist creation)  
+These factors may further strengthen predictive performance and uncover deeper behavioural insights.
+
+3. **Develop a long-term retention engine**  
+Future work could integrate segmentation results, churn predictions, and personalised content strategies into a unified Retention Engine. Such a system would:  
+- Continuously identify at-risk users  
+- Automate personalised retention interventions  
+- Adapt recommendations dynamically based on real-time behaviour  
+This would enable a more scalable and proactive retention strategy.
+
+4. **Run A/B tests to quantify marketing and recommendation impact**  
+To validate the financial and behavioural impact of proposed strategies, structured A/B tests should be conducted. These tests can measure differences in:  
+- Conversion uplift  
+- Churn reduction  
+- User engagement changes  
+A/B testing provides an empirical foundation for marketing investment decisions and helps optimise Spotify’s long-term growth strategy.
+
