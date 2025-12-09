@@ -14,7 +14,7 @@
 - [Key Findings](#key-findings)
 - [Recommendations](#recommendations)
 - [Business Impact](#business-impact)
-- [Next Step](#next-step)
+- [Next Steps](#next-steps)
 
 ---
 
@@ -35,7 +35,7 @@ Spotify’s revenue growth is heavily dependent on its Premium subscribers. Howe
 | Free (ad-supported)            | 73.11%     | 26.89%     |
 | Premium (paid subscription)    | 25.00%     | 75.00%     |
 
-**Table 1: Current Subcription Plan vs. Percentage of Premium Willingness**  
+**Table 1: Current Subscription Plan vs. Percentage of Premium Willingness**  
 
 <p align="left">
   <img src="EDA_Charts/17_eda_willingness_by_plan_bar.png" width="600">
@@ -51,9 +51,8 @@ Because the dataset does not contain direct revenue information, this project us
 To quantify the potential business impact, the analysis is framed around four commercial metrics:
 
 1. **Increase in Customer Lifetime Value (CLV)**
-2. **Estimated Annual Recurring Revenue (ARR) preserved**
-3. **Incremental revenue from Free → Premium conversion**
-4. **Improvement in marketing efficiency (ROI / CAC)**
+2. **Incremental revenue from Free → Premium conversion**
+3. **Improvement in marketing efficiency (ROI / CAC)**
 
 This framing enables a structured approach to identifying the core behavioural drivers behind conversion and retention.
 
@@ -72,7 +71,7 @@ This framing enables a structured approach to identifying the core behavioural d
 
 [🗂️ View the full dataset description](https://github.com/chienhao-wang/spotify_user_analysis/blob/main/dataset_description.md)
 
-The primary target variable for this analysis is `premium_sub_willingness` (Yes/No)
+The primary target variable for this analysis is `premium_sub_willingness` (Yes/No).
 
 ### 2. Data Cleaning and Preprocessing
 
@@ -104,7 +103,7 @@ Two analytical tracks were designed for Free and Premium users:
 1. Conduct EDA to understand Spotify’s conversion and retention challenges
 2. Segment Free users to identify high-potential Premium prospects
 3. Build a churn prediction model for Premium users
-4. Synthesize insights across both user groups
+4. Synthesise insights across both user groups
 5. Translate findings into actionable recommendations for Spotify’s marketing and product teams
 
 ---
@@ -315,7 +314,7 @@ For example, under reasonable cost assumptions, Customer Acquisition Cost (CAC) 
 
 ---
 
-## Next Step
+## Next Steps
 
 1. **Expand the dataset to improve model reliability**  
 The current dataset contains roughly 500 users, with only 96 Premium users. This creates a significant imbalance in the target variable and limits the statistical power of both the logistic regression model and the clustering analysis. Collecting additional Premium user samples would help balance the dataset and improve predictive accuracy and model stability.
