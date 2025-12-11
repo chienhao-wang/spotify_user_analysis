@@ -224,93 +224,136 @@ Building multi-device habits reinforces long-term retention.
 
 ## Business Impact
 
-This project quantifies how behavioural segmentation and churn modelling can drive commercial value for Spotify across three key levers: **CLV uplift, incremental conversion revenue, and improved marketing efficiency**.
+This section quantifies how behavioural segmentation and churn modelling translate into measurable commercial value for Spotify across three dimensions: **Customer Lifetime Value uplift, incremental conversion revenue, and marketing cost efficiency.**
 
 ---
 
 ### 1. Customer Lifetime Value (CLV) Uplift
 
-**Calculation logic:**
+## Metrics Spotlight — Understanding CLV Uplift
 
-- ARPU = €4.62 ≈ £4.04  
-- Current Monthly Churn Rate = 0.25  
-- Current Lifetime (in months):
+Reducing churn—even by a small margin—significantly extends customer lifetime and increases long-term revenue.  
+This metric quantifies the financial impact of applying model-driven retention interventions.
 
-  `Current Lifetime = 1 / Monthly Churn Rate = 1 / 0.25 = 4`
+### **Why It Matters**
+- Customer Lifetime Value (CLV) is inversely related to churn:  
+  **Lifetime = 1 / Monthly Churn Rate**
+- A small reduction in churn produces a disproportionately large increase in lifetime value.
+- This metric directly connects model performance → marketing effectiveness → financial impact.
 
-- Model Recall (from actual analysis) = 0.40  
-- Marketing intervention effectiveness (conservative) = 0.15  
+### **Inputs Used in the Calculation**
 
-- New Churn Rate after intervention:
+| Component | Value |
+|----------|-------|
+| **ARPU** | £4.04 per user per month |
+| **Current Monthly Churn Rate** | 25% |
+| **Model Recall** | 40% |
+| **Marketing Success Rate** | 15% |
 
-  `New Churn Rate = Current Churn Rate * (1 - Recall * Intervention Effectiveness)`
-  
-  `= 0.25 * (1 - 0.40 * 0.15) ≈ 0.235`
+### **How the Metric Is Calculated**
 
-- New Lifetime:
+1. Churn Reduction = Recall × Marketing Success Rate  
+2. New Churn Rate = Current Churn Rate × (1 − Churn Reduction)  
+3. Current Lifetime = 1 / Current Churn Rate  
+4. New Lifetime = 1 / New Churn Rate  
+5. CLV Uplift = (New Lifetime − Current Lifetime) × ARPU  
 
-  `New Lifetime = 1 / New Churn Rate ≈ 1 / 0.235 ≈ 4.26`
+### **Results**
 
-**CLV uplift per user:**  
+- **Current Lifetime:** 4.00 months  
+- **New Lifetime:** 4.26 months  
+- **CLV Uplift per User:** **£1.03**
 
-  `CLV Uplift = (New Lifetime - Current Lifetime) * ARPU`
-  
-  `≈ (4.26 - 4) * 4.04 ≈ £1.03 per user`
+A reduction in churn from **25% → 23.5%** produces a **£1.03 uplift per Premium user**.
 
-Under conservative assumptions (40% Recall and 15% intervention effectiveness), the overall churn rate improves from **25% to 23.5%**, resulting in an estimated **£1.03 CLV uplift per user**.
+If Recall improves to 60%, the uplift increases to **£2.06**.
 
-If model performance is improved and Recall reaches **60%**, the CLV uplift increases to approximately **£2.06 per user**.  
-Applied to **10,000 Premium users**, this translates to around **£10,300** in additional long-term value.
+Applied to **10,000 Premium users**, this represents:
+
+> **£10,300 in incremental long-term customer value.**
 
 ---
 
 ### 2. Free → Premium Conversion Revenue
 
-**Calculation logic:**
+## Metrics Spotlight — Revenue from Targeted Conversion
 
-- Target segment: Cluster 1 (high upgrade intention)  
-- Cluster size: 82 users  
-- Baseline conversion rate: 62.2%  
-  - Baseline converters ≈ `82 * 0.622 ≈ 51` users  
-- Assumed conversion rate (after intervention): 67.2%  
-  - New converters ≈ `82 * 0.672 ≈ 55` users  
-- Incremental converters ≈ `55 - 51 = 4` users  
+Targeting high-intent free users significantly increases Premium subscription revenue.  
+This metric quantifies the incremental revenue gained by improving conversion rates within the most promising cluster.
 
-Using these 4 additional Premium users as the base:
+### **Why It Matters**
+- Not all free users have equal upgrade potential.  
+- Focusing marketing on high-intent segments (Cluster 1) maximises revenue efficiency.
+- Even small improvements in conversion yield meaningful financial results at scale.
 
-**Monthly incremental revenue:**
+### **Inputs Used in the Calculation**
 
-  `4 * ARPU = 4 * 4.04 ≈ £16.16`
+| Component | Value |
+|----------|-------|
+| **Cluster Size (High-Potential Users)** | 82 users |
+| **Baseline Conversion Rate** | 62.2% |
+| **Target Conversion Rate (Post-intervention)** | 67.2% |
+| **Incremental Conversions** | +4 users |
+| **ARPU** | £4.04 |
 
-**Annual incremental revenue:**
+### **How the Metric Is Calculated**
 
-  `£16.16 * 12 ≈ £193.92`
+1. Baseline Converters = Cluster Size × Baseline Rate  
+2. New Converters = Cluster Size × Target Rate  
+3. Incremental Conversions = New − Baseline  
+4. Monthly Revenue Uplift = Incremental Conversions × ARPU  
+5. Annual Revenue Uplift = Monthly Uplift × 12  
 
-When extrapolated to a larger base (e.g. 100,000 free users with similar structure and behaviour), the projected annual revenue uplift is approximately **£46,879.25**.
+### **Results**
+
+- **Monthly Incremental Revenue:** £16.16  
+- **Annual Incremental Revenue:** £193.92  
+
+When extrapolated to **100,000 free users** with similar behavioural characteristics, the total uplift scales to:
+
+> **£46,879.25 in annual incremental Premium revenue.**
 
 ---
 
 ### 3. Marketing Cost Efficiency (ROI / CAC)
 
-**Baseline Marketing (all free users)**  
-- Target: all free users  
-- Observed overall conversion rate: **26.9%**  
-- Represents a non-targeted, low-precision acquisition strategy.
+## Metrics Spotlight — Reducing CAC Through Targeted Marketing
 
-**Targeted Marketing (podcast enthusiasts)**  
-- Target: free users who regularly listen to podcasts  
-- Conversion rate in this segment: **54.8%**
+Segmentation enables Spotify to allocate marketing spend more efficiently by focusing on users with the highest likelihood of converting.
 
-This means podcast enthusiasts convert at roughly **2×** the rate of the overall free user base.  
-With the same marketing budget, targeted campaigns can either:
+### **Why It Matters**
+- Baseline marketing targets all free users → higher spend, lower precision.  
+- Targeted marketing focuses on high-intent users → lower CAC, higher ROI.  
+- This allows Spotify to achieve more conversions with less budget.
 
-- Achieve more conversions for the same spend, or  
-- Maintain conversion volume with significantly less spend.
+### **Inputs Used in the Calculation**
 
-For example, under reasonable cost assumptions, Customer Acquisition Cost (CAC) can be reduced from around **£15.46** to approximately **£7.58**, implying:
+| Metric | Baseline (All Free Users) | Targeted Segment (Podcast Listeners) |
+|--------|-----------------------------|--------------------------------------|
+| **Observed Conversion Rate** | 26.9% | 54.8% |
+| **Relative Performance** | — | ~2× higher |
 
-- ~**50% reduction in CAC**  
-- **>1.1× improvement in marketing ROI**
+### **How the Metric Is Calculated**
+
+1. Compare conversion rates across baseline vs. targeted segments  
+2. Estimate CAC under both strategies  
+3. Quantify efficiency gain in terms of:  
+   - Lower CAC  
+   - Higher ROI  
+   - Reduced wasted impressions  
+
+**Example:**  
+CAC_baseline ≈ £15.46  
+CAC_targeted ≈ £7.58  
+→ CAC reduced by ~50%  
+→ ROI improved by >1.1×
+
+### **Results**
+
+- Podcast listeners convert at **twice the rate** of the general free-user population.  
+- Targeted campaigns dramatically reduce wasted spend and acquisition cost.  
+- Estimated CAC reduction: **£15.46 → £7.58** (approx. 50% decrease).  
+- Marketing ROI increases by **>1.1×**, proving the value of segmentation-driven marketing.
 
 ---
 
