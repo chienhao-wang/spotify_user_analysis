@@ -38,7 +38,7 @@ Spotify’s revenue growth is heavily dependent on its Premium subscribers. Howe
 **Table 1: Current Subscription Plan vs. Percentage of Premium Willingness**  
 
 <p align="left">
-  <img src="EDA_Charts/17_eda_willingness_by_plan_bar.png" width="600">
+  <img src="charts/eda_2_willingness_by_plan_bar.png" width="600">
   <br>
   <em>Figure 1: Premium Subscription Willingness Distribution</em>
 </p>
@@ -116,7 +116,7 @@ Two analytical tracks were designed for Free and Premium users:
 - **Cluster 2**, while accounting for only **18.8%** of free users, still contains around **40 users with Premium upgrade intent**, making it a meaningful secondary target segment.
 
 <p align="left">
-  <img src="Free_Users_Charts/11_free_cluster_willingness.png" width="600">
+  <img src="charts/free_2_cluster_willingness.png" width="600">
   <br>
   <em>Figure 2: Conversion Willingness by Cluster</em>
 </p>
@@ -127,7 +127,7 @@ Two analytical tracks were designed for Free and Premium users:
 - They show a strong preference for **Duo and Family plans (≈66%)**, suggesting frequent use of shared household devices or a clear interest in cost-effective family/shared subscriptions.
 
 <p align="left">
-  <img src="Free_Users_Charts/12_free_cluster_device.png" width="600">
+  <img src="charts/free_3_cluster_device.png" width="600">
   <br>
   <em>Figure 3: Listening Device Proportion by Cluster</em>
 </p>
@@ -143,7 +143,7 @@ Two analytical tracks were designed for Free and Premium users:
 - Their preferred podcast genres are **health and lifestyle related** (including *health and fitness*, *sports*, and *lifestyle and health*), representing **around 80%** of their choices. They also tend to favour **longer podcast episodes**, indicating strong engagement with in-depth content.
 
 <p align="left">
-  <img src="Free_Users_Charts/19_free_cluster_pod_lis_freq.png" width="600">
+  <img src="charts/free_8_cluster_pod_lis_freq.png" width="600">
   <br>
   <em>Figure 4: Podcast Listen Frequency Distribution by Cluster</em>
 </p>  
@@ -163,7 +163,7 @@ Insights from the Logistic Regression coefficient bar chart (see Figure 5) revea
 - Users who **frequently listen via wearable devices or smart speakers** also show **stronger retention tendencies and lower churn risk**, suggesting that deep, cross-device engagement is closely linked to stickiness and long-term subscription behaviour.
 
 <p align="left">
-  <img src="Premium_Users_Charts/7_premium_churn_model_coefficients.png" width="800">
+  <img src="charts/premium_3_churn_model_coefficients.png" width="800">
   <br>
   <em>Figure 5: Logistic Regression Model Coefficient Bar Chart</em>
 </p>
