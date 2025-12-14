@@ -247,7 +247,7 @@ This metric quantifies the financial impact of applying model-driven retention i
 |----------|-------|
 | **ARPU** | £4.04 per user per month |
 | **Current Monthly Churn Rate** | 25% |
-| **Model Recall** | 40% |
+| **Model Recall** | 60% |
 | **Marketing Success Rate** | 15% |
 
 ### **How the Metric Is Calculated**
@@ -261,16 +261,16 @@ This metric quantifies the financial impact of applying model-driven retention i
 ### **Results**
 
 - **Current Lifetime:** 4.00 months  
-- **New Lifetime:** 4.26 months  
-- **CLV Uplift per User:** **£1.03**
+- **New Lifetime:** 4.40 months  
+- **CLV Uplift per User:** **£1.60**
 
-A reduction in churn from **25% → 23.5%** produces a **£1.03 uplift per Premium user**.
+A reduction in churn from **25% → 22.75%** produces a **£1.60 uplift per Premium user**.
 
-If Recall improves to 60%, the uplift increases to **£2.06**.
+If Recall improves to 80%, the uplift increases to **£2.2**.
 
 Applied to **10,000 Premium users**, this represents:
 
-> **£10,300 in incremental long-term customer value.**
+> **£16,000 in incremental long-term customer value.**
 
 ---
 
@@ -306,8 +306,8 @@ This metric quantifies the incremental revenue gained by improving conversion ra
 
 ### **Results**
 
-- **Monthly Incremental Revenue:** £16.16  
-- **Annual Incremental Revenue:** £193.92  
+- **Monthly Incremental Revenue:** £16.56  
+- **Annual Incremental Revenue:** £198.77  
 
 When extrapolated to **100,000 free users** with similar behavioural characteristics, the total uplift scales to:
 
@@ -331,6 +331,8 @@ Segmentation enables Spotify to allocate marketing spend more efficiently by foc
 | Metric | Baseline (All Free Users) | Targeted Segment (Podcast Listeners) |
 |--------|-----------------------------|--------------------------------------|
 | **Observed Conversion Rate** | 26.9% | 54.8% |
+| **Customer Acquisition Cost (CAC)** | £15.46 | £7.58 |
+| **ROI** | 1.05x | 2.13x |
 | **Relative Performance** | — | ~2× higher |
 
 ### **How the Metric Is Calculated**
@@ -341,12 +343,6 @@ Segmentation enables Spotify to allocate marketing spend more efficiently by foc
    - Lower CAC  
    - Higher ROI  
    - Reduced wasted impressions  
-
-**Example:**  
-CAC_baseline ≈ £15.46  
-CAC_targeted ≈ £7.58  
-→ CAC reduced by ~50%  
-→ ROI improved by >1.1×
 
 ### **Results**
 
